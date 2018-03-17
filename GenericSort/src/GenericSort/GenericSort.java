@@ -11,10 +11,8 @@ public class GenericSort {
 		str.add("call");
 		str.add("by");
 		System.out.println(str);
-		str = HeapSort.heapSort(str);
+		str = HeapSort.Sort(str);
 		System.out.println(str);
-		
-		// TODO Auto-generated method stub
 
 	}
 }

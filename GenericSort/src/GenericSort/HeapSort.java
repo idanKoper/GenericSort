@@ -5,23 +5,26 @@ import java.util.List;
 public class HeapSort {
 
 	private HeapSort() {}
-
-	public static <T extends Comparable<T>> List<T> heapSort(List<T> unsortedList) {
-		assert unsortedList != null;
-		assert unsortedList.size() > 1;
-		List<T> sortedList = new ArrayList<T>(unsortedList);
-		for (int i = 1; i < sortedList.size(); i++) {
-			sortedList = siftUp(sortedList, i);
+// sorting method
+	public static <T extends Comparable<T>> List<T> Sort(List<T> unsortedList) {
+		if( unsortedList != null && unsortedList.size()>1) {
+			List<T> sortedList = new ArrayList<T>(unsortedList);
+			for (int i = 1; i < sortedList.size(); i++) {
+				sortedList = siftUp(sortedList, i);
+			}
+			for (int i = sortedList.size() - 1; i >= 1; i--) {
+				sortedList = swap(sortedList, 0, i);
+				sortedList = siftDown(sortedList, i - 1);
+			}
+			System.out.println("Sorted!");
+			return sortedList;
 		}
-		for (int i = sortedList.size() - 1; i >= 1; i--) {
-			sortedList = swap(sortedList, 0, i);
-			sortedList = siftDown(sortedList, i - 1);
-		}
-		return sortedList;
-	}
+		System.out.println("there`s nothing to sort");
+		return unsortedList;
+	}	
 
 	private static <T extends Comparable<T>> List<T> siftUp(List<T> unsortedList, int n) {
-		assert n > 0;
+		assert n>0;
 		for (int i = n;;) {
 			if (i == 0) {
 				break;
@@ -39,7 +42,6 @@ public class HeapSort {
 	private static <T extends Comparable<T>> List<T> siftDown(List<T> unsortedList, int n) {
 		for (int i = 0;;) {
 			int c = 2 * (i + 1) - 1;
-
 			if (c > n) {
 				break;
 			}
